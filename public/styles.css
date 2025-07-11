@@ -1,0 +1,405 @@
+:root {
+    --primary-color: #00ff88;
+    --secondary-color: #0066ff;
+    --background-dark: #1a1a1a;
+    --text-color: #ffffff;
+    --error-color: #ff3366;
+    --success-color: #00ff88;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--background-dark), #000000);
+    color: var(--text-color);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.container {
+    width: 100%;
+    max-width: 450px;
+    padding: 20px;
+    padding-bottom: 80px;
+}
+
+.auth-container {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.auth-form {
+    display: none;
+}
+
+.auth-form.active {
+    display: block;
+}
+
+h2 {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.form-control {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+.form-control:focus {
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 0 2px var(--primary-color);
+    color: var(--text-color);
+}
+
+.btn {
+    border-radius: 10px;
+    padding: 12px 25px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-primary {
+    background: var(--secondary-color);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: #0055dd;
+    transform: translateY(-3px);
+    box-shadow: 0 7px 14px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:active {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-success {
+    background: var(--primary-color);
+    border: none;
+    color: #000000;
+}
+
+.btn-success:hover {
+    background: #00dd77;
+    transform: translateY(-3px);
+    box-shadow: 0 7px 14px rgba(0, 0, 0, 0.2);
+}
+
+.btn-success:active {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.voice-input-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.voice-status {
+    margin-top: 15px;
+    font-size: 0.9em;
+    min-height: 20px;
+}
+
+.recording .voice-status {
+    color: var(--error-color);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* Animación de onda para el botón de micrófono */
+@keyframes ripple {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 102, 255, 0.4);
+    }
+    100% {
+        box-shadow: 0 0 0 20px rgba(0, 102, 255, 0);
+    }
+}
+
+.recording #startLoginVoice,
+.recording #startRegisterVoice {
+    animation: ripple 1s infinite;
+    position: relative;
+}
+
+/* Animación mejorada para el icono de éxito */
+@keyframes successAnimation {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.success-icon {
+    font-size: 5em;
+    color: var(--success-color);
+    margin-bottom: 20px;
+    animation: successAnimation 0.8s ease-out;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+a:hover {
+    color: var(--secondary-color);
+}
+
+a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+a:hover::after {
+    width: 100%;
+}
+
+.welcome-content {
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding: 20px;
+    min-height: 300px;
+}
+
+.welcome-message {
+    font-size: 1.2em;
+    margin: 20px 0;
+    animation: slideUp 0.6s ease-out;
+    opacity: 0;
+    animation-fill-mode: forwards;
+    animation-delay: 0.3s;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Animaciones */
+.auth-form {
+    animation: fadeIn 0.5s ease-out;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.auth-form:not(.active) {
+    transform: scale(0.95) translateY(10px);
+    opacity: 0;
+}
+
+/* Animaciones de fuegos artificiales */
+.firework {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    animation: firework-animation 2s ease-out infinite;
+    animation-delay: var(--delay);
+}
+
+.firework::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    animation: firework-particles 2s ease-out infinite;
+    animation-delay: var(--delay);
+}
+
+.firework:nth-child(1) { --delay: 0s; left: 20%; top: 50%; background: #ff0000; }
+.firework:nth-child(2) { --delay: 0.3s; left: 50%; top: 30%; background: #00ff00; }
+.firework:nth-child(3) { --delay: 0.6s; left: 80%; top: 50%; background: #0000ff; }
+.firework:nth-child(4) { --delay: 0.9s; left: 35%; top: 70%; background: #ffff00; }
+.firework:nth-child(5) { --delay: 1.2s; left: 65%; top: 70%; background: #ff00ff; }
+
+@keyframes firework-animation {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    60% {
+        transform: scale(1.5);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+@keyframes firework-particles {
+    0% {
+        box-shadow: 
+            0 0 0 0 white,
+            0 0 0 0 white,
+            0 0 0 0 white,
+            0 0 0 0 white,
+            0 0 0 0 white,
+            0 0 0 0 white;
+    }
+    50% {
+        box-shadow: 
+            0 0 0 0 white,
+            0 0 0 0 white,
+            0 0 0 0 white,
+            0 0 0 0 white,
+            0 0 0 0 white,
+            0 0 0 0 white;
+    }
+    100% {
+        box-shadow: 
+            30px -30px 0 -5px transparent,
+            -30px -30px 0 -5px transparent,
+            30px 30px 0 -5px transparent,
+            -30px 30px 0 -5px transparent,
+            0 40px 0 -5px transparent,
+            0 -40px 0 -5px transparent;
+    }
+}
+
+/* Footer Styles */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    padding: 15px 0;
+    z-index: 1000;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.footer-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--primary-color) !important;
+    padding: 8px 20px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 255, 136, 0.2);
+    border-color: var(--primary-color);
+}
+
+.footer-btn i {
+    font-size: 1.2em;
+}
+
+.copyright {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 0.9em;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.copyright:hover {
+    opacity: 1;
+}
+
+.copyright a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.copyright a:hover {
+    color: var(--primary-color);
+}
+
+.copyright i {
+    color: var(--primary-color);
+    margin: 0 5px;
+    animation: pulse-heart 2s infinite;
+}
+
+.copyright .highlight {
+    color: var(--primary-color);
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+@keyframes pulse-heart {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+} 
